@@ -317,7 +317,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/ModelApiResponse'
       security:
         - petstore_auth:
             - write:pets
@@ -761,7 +761,7 @@ components:
             - sold
       xml:
         name: pet
-    ApiResponse:
+    ModelApiResponse:
       type: object
       properties:
         code:
