@@ -1,0 +1,270 @@
+openapi: 3.0.0
+info:
+  title: Loja de Produtos API
+  description: API para gerenciamento de produtos e usuários em uma loja de venda de produtos
+  version: 1.0.0
+servers:
+  - url: https://api.lojaexemplo.com/v1
+    description: Servidor de Produção
+  - url: https://sandbox.api.lojaexemplo.com/v1
+    description: Servidor de Sandbox
+
+paths:
+  /produtos:
+    get:
+      summary: Lista todos os produtos
+      description: Retorna uma lista de todos os produtos disponíveis na loja
+      responses:
+        '200':
+          description: Lista de produtos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+    post:
+      summary: Adiciona um novo produto
+      description: Cria um novo produto na loja
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoCriacao'
+      responses:
+        '201':
+          description: Produto criado com sucesso
+        '400':
+          description: Requisição inválida
+
+  /produtos/{id}:
+    get:
+      summary: Obtém um produto
+      description: Retorna um produto específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalhes do produto
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Produto'
+        '404':
+          description: Produto não encontrado
+    put:
+      summary: Atualiza um produto
+      description: Atualiza os dados de um produto específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProdutoAtualizacao'
+      responses:
+        '200':
+          description: Produto atualizado com sucesso
+        '400':
+          description: Requisição inválida
+        '404':
+          description: Produto não encontrado
+    delete:
+      summary: Remove um produto
+      description: Deleta um produto específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Produto deletado com sucesso
+        '404':
+          description: Produto não encontrado
+
+  /usuarios:
+    get:
+      summary: Lista todos os usuários
+      description: Retorna uma lista de todos os usuários registrados na loja
+      responses:
+        '200':
+          description: Lista de usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+    post:
+      summary: Cria um novo usuário
+      description: Adiciona um novo usuário à loja
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioCriacao'
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+        '400':
+          description: Requisição inválida
+
+  /usuarios/{id}:
+    get:
+      summary: Obtém um usuário
+      description: Retorna um usuário específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Detalhes do usuário
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: Usuário não encontrado
+    put:
+      summary: Atualiza um usuário
+      description: Atualiza os dados de um usuário específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioAtualizacao'
+      responses:
+        '200':
+          description: Usuário atualizado com sucesso
+        '400':
+          description: Requisição inválida
+        '404':
+          description: Usuário não encontrado
+    delete:
+      summary: Remove um usuário
+      description: Deleta um usuário específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Usuário deletado com sucesso
+        '404':
+          description: Usuário não encontrado
+
+components:
+  schemas:
+    Produto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "12345"
+        nome:
+          type: string
+          example: "Produto A"
+        descricao:
+          type: string
+          example: "Descrição do Produto A"
+        preco:
+          type: number
+          format: float
+          example: 99.99
+        disponibilidade:
+          type: boolean
+          example: true
+    ProdutoCriacao:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "Produto A"
+        descricao:
+          type: string
+          example: "Descrição do Produto A"
+        preco:
+          type: number
+          format: float
+          example: 99.99
+        disponibilidade:
+          type: boolean
+          example: true
+    ProdutoAtualizacao:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "Produto A"
+        descricao:
+          type: string
+          example: "Descrição do Produto A"
+        preco:
+          type: number
+          format: float
+          example: 99.99
+        disponibilidade:
+          type: boolean
+          example: true
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "67890"
+        nome:
+          type: string
+          example: "João da Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@exemplo.com"
+    UsuarioCriacao:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "João da Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@exemplo.com"
+        senha:
+          type: string
+          format: password
+          example: "senha123"
+    UsuarioAtualizacao:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: "João da Silva"
+        email:
+          type: string
+          format: email
+          example: "joao.silva@exemplo.com"
