@@ -1,4 +1,4 @@
-package database;
+package database.entity;
 
 
 import jakarta.persistence.Entity;
@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class ProdutoEntity {
+public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
