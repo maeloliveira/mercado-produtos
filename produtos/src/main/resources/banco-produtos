@@ -13,3 +13,21 @@ CREATE TABLE Usuario (
                          senha VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Pedido
+(
+    id serial NOT NULL,
+    usuario_id serial NOT NULL,
+    data_pedido date,
+    total numeric(20, 2),
+    PRIMARY KEY (id)
+);
+CREATE TABLE item_pedido
+(
+    id serial NOT NULL,
+    pedido_id serial,
+    produto_id serial,
+    quantidade bigint,
+    PRIMARY KEY (id)
+);
+
+
