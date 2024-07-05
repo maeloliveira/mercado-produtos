@@ -13,7 +13,7 @@ CREATE TABLE Usuario (
                          senha VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE public."Pedido"
+CREATE TABLE Pedido
 (
     id serial NOT NULL,
     usuario_id serial NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE public."Pedido"
     total numeric(20, 2),
     PRIMARY KEY (id)
 );
-CREATE TABLE public.item_pedido
+CREATE TABLE item_pedido
 (
     id serial NOT NULL,
     pedido_id serial,

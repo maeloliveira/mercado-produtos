@@ -4,9 +4,9 @@ info:
   description: API para gerenciamento de produtos e usuários em uma loja de venda de produtos
   version: 1.0.0
 servers:
-  - url: https://api.lojaexemplo.com/v1
+  - url: api/v1
     description: Servidor de Produção
-  - url: https://sandbox.api.lojaexemplo.com/v1
+  - url: api/v2
     description: Servidor de Sandbox
 
 paths:

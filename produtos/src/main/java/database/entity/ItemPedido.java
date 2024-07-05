@@ -1,9 +1,9 @@
 package database.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "item_pedido")
 public class ItemPedido {
 
     @Id
