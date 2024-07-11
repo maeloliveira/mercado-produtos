@@ -2,6 +2,7 @@ package service;
 
 import database.entity.Usuario;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import repository.UsuarioRepository;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class UsuarioService {
 
     private UsuarioRepository usuarioRepository;
 
+    @Transactional
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
     }

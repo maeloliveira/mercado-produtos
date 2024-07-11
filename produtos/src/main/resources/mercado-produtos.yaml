@@ -4,11 +4,8 @@ info:
   description: API para gerenciamento de produtos e usuários em uma loja de venda de produtos
   version: 1.0.0
 servers:
-  - url: api/v1
+  - url: https://localhost:8080
     description: Servidor de Produção
-  - url: api/v2
-    description: Servidor de Sandbox
-
 paths:
   /produtos:
     get:
